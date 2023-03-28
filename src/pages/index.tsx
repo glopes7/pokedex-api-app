@@ -11,7 +11,8 @@ export default function Home() {
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-        const pokename = e.target.pokename.value;
+        const formData = new FormData(e.target as HTMLFormElement);
+        const pokename = formData.get("pokename");
         console.log(pokename);
         const citiesRef = collection(db, "pokemons");
         const q = query(citiesRef, where("name", "==", pokename));
